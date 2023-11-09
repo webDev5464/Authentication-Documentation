@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.light {
+  --navBg: #afe6f8;
+  --btn: #545887;
+  --white: white;
+  --black: black;
+  --gray: gray;
+  --active: tomato;
+}
+
+nav a {
+  color: black;
+}
+
+.active {
+  color: var(--active);
+}
+
+main {
+  padding: 10px 20px;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--navBg);
+  padding: 5px 30px;
+}
+
+.registerLoginOptionBtn {
+  background-color: var(--btn);
+  color: var(--white);
+  padding: 3px 5px;
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.registerLoginOptionBtn:active {
+  scale: 0.95;
+}
+
+.userOption {
+  position: absolute;
+  right: 30px;
+  top: 37px;
+  background-color: var(--btn);
+  width: 130px;
+  padding: 5px 0;
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+}
+
+.userOption-Disable {
+  display: none;
+}
+
+.userOption-Enable {
+  display: block;
+}
+
+.userOption ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userOption li {
+  list-style: none;
+  padding: 5px 10px;
+}
+
+.userOption a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.headingNavigate {
+  display: flex;
+  align-items: center;
+}
+
+.navigate {
+  margin: 0 50px;
+}
+
+.navigate a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}

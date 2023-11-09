@@ -68,7 +68,7 @@ app.listen(PORT, () => {
 const mongoose = require("mongoose")
 
 mongoose.connect("mongodb://127.0.0.1:27017/authentication").then(()=> {
-  console.log("Database Connected Successfully...");
+  console.log("Database Connected...");
 })
 ```
 
@@ -87,9 +87,8 @@ app.use(cors())
 require("./configs/database.config")
 
 //! localhost server listening
-const PORT = 8080
-app.listen(PORT, () => {
-  console.log(`Server Connected : http://localhost:${PORT}`);
+app.listen(8080, () => {
+  console.log("Server Connected...");
 })
 ```
 
@@ -113,7 +112,7 @@ const userModel = mongoose.model("userData", createUserSchema)
 module.exports = userModel
 ```
 
-## 📌 create User Register
+## 📌 create User Register (Server Side)
 
 - create new file `controllers/userRegister.controller.js`
 
@@ -168,11 +167,54 @@ require("./configs/database.config")
 app.post("/userRegister", userRegistration)
 
 //! localhost server listening
-const PORT = 8080
-app.listen(PORT, () => {
-  console.log(`Server Connected : http://localhost:${PORT}`);
+app.listen(8080, () => {
+  console.log("Server Connected...");
 })
 ```
 
 #### 🔺 How to bcrypt password?
 
+- install bcrypt
+
+```bash
+npm i bcryptjs
+```
+
+- **Modified** :- `controllers/userRegister.controller.js`
+
+```js
+//! require `models/userData.model.js`
+const userData = require("../models/userData.model")
+// ----Modified----
+const bcrypt = require("bcryptjs")
+// ----------------
+
+const userRegistration = async (req, res) => {
+
+  //* user already login? find!
+  let existingUser = await userData.findOne({ email: req.body.email })
+
+  let { username, email, pass } = req.body
+  console.log(req.body);
+
+  if (existingUser) {
+    res.send({ success: false, message: "User Already Register" })
+  } else {
+
+    // ----Modified----
+    let hassPass = await bcrypt.hash(pass, 10)
+    let registerDependency = userData({ username, email, pass: hassPass })
+    // ----------------
+    const result = await registerDependency.save()
+
+    if (result) {
+      res.send({ success: true, message: "New user register successfully", userData: result })
+      console.log(`New user register : ${req.body.email}`);
+    } else {
+      res.send({ success: false, message: "This user already register" })
+    }
+  }
+}
+
+module.exports = userRegistration
+```

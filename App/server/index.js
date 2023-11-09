@@ -14,7 +14,6 @@ require("./configs/database.config")
 app.post("/userRegister", userRegistration)
 
 //! localhost server listening
-const PORT = 8080
-app.listen(PORT, () => {
-  console.log(`Server Connected : http://localhost:${PORT}`);
+app.listen(8080, () => {
+  console.log("Server Connected...");
 })
