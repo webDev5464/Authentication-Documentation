@@ -218,3 +218,132 @@ const userRegistration = async (req, res) => {
 
 module.exports = userRegistration
 ```
+
+## 📌 Create userRegister from end connect with server (Client side)
+
+- install package dependency
+
+**Using Icons**
+
+```bash
+npm i react-icons
+```
+
+**axios install**
+
+```bash
+npm i axios
+```
+
+#### 🔺 User Register form code
+
+```js
+import { useEffect, useRef, useState } from "react"
+// npm i react-icons
+import { BiShowAlt, BiHide } from "react-icons/bi"
+// npm i axios
+import axios from "axios"
+
+export default function UserRegistration() {
+
+  // Auto focus
+  const focus = useRef(null)
+  useEffect(() => {
+    focus.current.focus()
+  }, [])
+
+  // Show password end Hide password
+  const [hidePass, showPass] = useState(true)
+  const showHideBtn = () => {
+    showPass(!hidePass)
+  }
+
+  // input value 
+  const [inputVal, setInputVal] = useState({
+    username: '',
+    email: '',
+    pass: '',
+    conPass: ''
+  })
+
+  // submitForm
+  const formHandler = async (e) => {
+    e.preventDefault()
+
+    // pass end conPass not match!
+    if (inputVal.pass !== inputVal.conPass) {
+      alert("Password end Confirm Password Does not match.")
+    } else {
+      try {
+        const result = await axios.post("http://localhost:8080/userRegister", inputVal)
+        alert(result.data.message)
+      } catch (error) {
+        console.error("Registration Failed:", error.message)
+        alert("Registration Failed. Please try again.")
+      }
+    }
+  }
+
+  // D-Structure inputData
+  const inputData = (e) => {
+    const { name, value } = e.target
+    setInputVal({ ...inputVal, [name]: value })
+  }
+
+  return (
+    <section className="formParent">
+      <div className="formHeading">
+        <h2>Register Your Account</h2>
+      </div>
+
+      <form onSubmit={formHandler}>
+        <div className="flex item-center inputLabel">
+          <div className="w-150">
+            <label htmlFor="username">Username :</label>
+          </div>
+          <div>
+            <input type="text" name="username" required ref={focus} value={inputVal.username} onChange={inputData} />
+          </div>
+        </div>
+
+        <div className="flex item-center inputLabel">
+          <div className="w-150">
+            <label htmlFor="email">Email :</label>
+          </div>
+          <div>
+            <input type="email" name="email" required value={inputVal.email} onChange={inputData} />
+          </div>
+        </div>
+
+        <div className="passInput">
+          <div className="flex item-center inputLabel">
+            <div className="w-150">
+              <label htmlFor="pass">Password :</label>
+            </div>
+            <div>
+              <input type={hidePass ? "password" : "text"} name="pass" required value={inputVal.pass} onChange={inputData} />
+            </div>
+          </div>
+
+          <div onClick={showHideBtn} className="showHideBtn">{hidePass ? <BiHide /> : <BiShowAlt />}</div>
+        </div>
+
+        <div className="flex item-center inputLabel">
+          <div className="w-150">
+            <label htmlFor="conPass">Confirm Password:</label>
+          </div>
+          <div>
+            <input type="text" name="conPass" required value={inputVal.conPass} onChange={inputData} />
+          </div>
+        </div>
+
+        <div>
+          <input type="submit" value="Register" />
+        </div>
+      </form>
+    </section>
+  )
+}
+```
+
+## 📌 Create login controller (Server side)
