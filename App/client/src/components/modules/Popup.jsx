@@ -13,7 +13,7 @@ export default function Popup() {
       <hr style={directLogin ? { display: "block", margin: "10px 0" } : { display: "none" }} />
 
       <div style={directLogin ? { display: "block", margin: "0 30px" } : { display: "none" }}>
-        <h3>You have to login! <span><Link to={'UserLogin'} style={{ color: "tomato" }}>Yes</Link></span></h3>
+        <h3>You have to login! <span><Link to={'/UserLogin'} style={{ color: "tomato" }}>Yes</Link></span></h3>
       </div>
     </div>
   )
