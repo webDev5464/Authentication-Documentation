@@ -66,7 +66,11 @@ export default function UserRegistration() {
         } catch (error) {
           // Something's wrong
           console.error("Registration Failed:", error.message)
-          alert("Registration Failed. Please try again.")
+          setPopupMessage("Server Down!")
+          popupEnable(true)
+          setTimeout(() => {
+            popupEnable(false)
+          }, 10000)
         }
       }
     }

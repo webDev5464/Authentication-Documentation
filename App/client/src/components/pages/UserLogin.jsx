@@ -1,8 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { BiHide, BiShowAlt } from "react-icons/bi"
 import Popup from "../modules/Popup"
+import axios from "axios"
+import { PopupContext } from "../../App"
+import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
+  let navigate = useNavigate()
+  const { setPopupMessage, popupEnable, setLoginUsername } = useContext(PopupContext)
   const [hidePass, showPass] = useState(true)
 
   const showHideBtn = () => {
@@ -14,8 +19,20 @@ export default function UserLogin() {
     pass: ""
   })
 
-  const formHandler = () => {
+  const formHandler = async (e) => {
+    e.preventDefault()
 
+    const result = await axios.post("http://localhost:8080/userLogin", inputVal)
+    setPopupMessage(result.data.message)
+    popupEnable(true)
+    setTimeout(() => {
+      popupEnable(false)
+    }, 2000)
+
+    if (result.data.success == true) {
+      navigate("/")
+      setLoginUsername(`Hello ${result.data.userData.username}`)
+    }
   }
 
   // D-Structure inputData
@@ -23,7 +40,6 @@ export default function UserLogin() {
     const { name, value } = e.target
     setInputVal({ ...inputVal, [name]: value })
   }
-
 
   return (
     <section className="formParent">

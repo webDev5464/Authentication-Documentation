@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
 
 const createUserSchema = mongoose.Schema({
-  fullDate: String,
-  fullTime: String,
   username: String,
   email: String,
-  pass: String
-})
+  pass: String,
+  author: {
+    type: Boolean,
+    default: false
+  }
+}, { timestamps: true })
 
 const userModel = mongoose.model("userData", createUserSchema)
 

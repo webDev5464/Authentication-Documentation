@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
+import webIcon from "/authentication.png"
 
 export default function Navigation() {
   const [showOption, setShowOption] = useState(false)
@@ -7,11 +8,13 @@ export default function Navigation() {
   const showUserAuthOption = () => {
     setShowOption(!showOption)
   }
+
   return (
     <nav className="light">
       <div className="headingNavigate">
-        <div>
-          <h2>Authentication</h2>
+        <div style={{ display: "flex", alignItems: "baseline" }}>
+          <img src={webIcon} alt="webIcon" width={40} />
+          <h3 style={{ margin: "0 8px" }}>Authentication</h3>
         </div>
         <div className="navigate">
           <NavLink to={"/"}>Home</NavLink>

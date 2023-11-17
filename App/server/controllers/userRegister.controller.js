@@ -1,7 +1,6 @@
 //! require `models/userData.model.js`
 const userData = require("../models/userData.model")
 const bcrypt = require("bcryptjs")
-const { fullDate, fullTime } = require("../models/dateEndTime.model")
 
 const userRegistration = async (req, res) => {
 
@@ -13,7 +12,7 @@ const userRegistration = async (req, res) => {
     res.send({ success: false, message: "User Already Register" })
   } else {
     let hassPass = await bcrypt.hash(pass, 10)
-    let registerDependency = userData({ username, email, pass: hassPass, fullDate, fullTime })
+    let registerDependency = userData({ username, email, pass: hassPass })
     const result = await registerDependency.save()
 
     if (result) {

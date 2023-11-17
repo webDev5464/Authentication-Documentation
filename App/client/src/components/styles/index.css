@@ -7,10 +7,11 @@
 body {
   user-select: none;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 .light {
-  --navBg: #afe6f8;
+  --navBg: #91e8ed;
   --btn: #545887;
   --white: white;
   --black: black;
@@ -56,21 +57,21 @@ nav {
 
 .userOption {
   position: absolute;
-  right: 30px;
-  top: 37px;
+  top: 41px;
   background-color: var(--btn);
-  width: 130px;
+  width: 132px;
   padding: 5px 0;
   border: 2px solid var(--gray);
   border-radius: 4px;
+  transition: .5s;
 }
 
 .userOption-Disable {
-  display: none;
+  right: -1000px;
 }
 
 .userOption-Enable {
-  display: block;
+  right: 30px;
 }
 
 .userOption ul {
@@ -115,7 +116,6 @@ nav {
 
 .formHeading {
   margin: 30px 0;
-
 }
 
 form {

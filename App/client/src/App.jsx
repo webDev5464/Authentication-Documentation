@@ -4,6 +4,7 @@ import Home from "./components/pages/Home"
 import UserRegistration from "./components/pages/UserRegisteration"
 import UserLogin from "./components/pages/UserLogin"
 import { createContext, useState } from "react"
+import AdminLogin from "./components/admin/AdminLogin"
 
 export const PopupContext = createContext()
 
@@ -11,10 +12,20 @@ export default function App() {
   const [popupMessage, setPopupMessage] = useState("")
   const [popupDisable, popupEnable] = useState(false)
   const [directLogin, setDirectLogin] = useState(false)
+  const [loginUsername, setLoginUsername] = useState("")
 
   return (
     <Router>
-      <PopupContext.Provider value={{ popupMessage, setPopupMessage, popupDisable, popupEnable, directLogin, setDirectLogin }}>
+      <PopupContext.Provider value={{
+        popupMessage,
+        setPopupMessage,
+        popupDisable,
+        popupEnable,
+        directLogin,
+        setDirectLogin,
+        loginUsername,
+        setLoginUsername
+      }}>
         <Navigation />
 
         <main>
@@ -22,6 +33,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="UserRegistration" element={<UserRegistration />} />
             <Route path="UserLogin" element={<UserLogin />} />
+            <Route path="Admin" element={<AdminLogin />} />
           </Routes>
         </main>
       </PopupContext.Provider>
