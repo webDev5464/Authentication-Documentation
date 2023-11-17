@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navigation from "./components/modules/Navigation"
 import Home from "./components/pages/Home"
-import UserRegistration from "./components/pages/UserRegisteration"
+import UserRegistration from "./components/pages/UserRegistration"
 import UserLogin from "./components/pages/UserLogin"
 import { createContext, useState } from "react"
 import AdminLogin from "./components/admin/AdminLogin"
@@ -12,7 +12,7 @@ export default function App() {
   const [popupMessage, setPopupMessage] = useState("")
   const [popupDisable, popupEnable] = useState(false)
   const [directLogin, setDirectLogin] = useState(false)
-  const [loginUsername, setLoginUsername] = useState("")
+  const [loginUsername, setLoginUsername] = useState("User not login")
 
   return (
     <Router>
