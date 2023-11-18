@@ -451,3 +451,7 @@ export default function UserLogin() {
   )
 }
 ```
+
+## 📌 Admin Login (server side)
+
+#### 🔺 Admin Login form (client side)
