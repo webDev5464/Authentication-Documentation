@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { PopupContext } from "../../App"
+import { PopupContext } from "../../Router"
 
 export default function Home() {
   const { loginUsername } = useContext(PopupContext)
