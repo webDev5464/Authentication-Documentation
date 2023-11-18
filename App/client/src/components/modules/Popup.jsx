@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { PopupContext } from "../../App"
+import { PopupContext } from "../../Router"
 import { Link } from "react-router-dom"
 
 export default function Popup() {

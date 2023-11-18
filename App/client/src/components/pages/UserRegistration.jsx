@@ -4,7 +4,7 @@ import { BiShowAlt, BiHide } from "react-icons/bi"
 // npm i axios
 import axios from "axios"
 import Popup from "../modules/Popup"
-import { PopupContext } from "../../App"
+import { PopupContext } from "../../Router"
 
 export default function UserRegistration() {
   const { popupEnable, setPopupMessage, setDirectLogin } = useContext(PopupContext)

@@ -1,14 +1,19 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { BiHide, BiShowAlt } from "react-icons/bi"
 import Popup from "../modules/Popup"
 import axios from "axios"
-import { PopupContext } from "../../App"
+import { PopupContext } from "../../Router"
 import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
   let navigate = useNavigate()
+  let autoFocus = useRef()
   const { setPopupMessage, popupEnable, setLoginUsername } = useContext(PopupContext)
   const [hidePass, showPass] = useState(true)
+
+  useEffect(() => {
+    autoFocus.current.focus()
+  }, [])
 
   const showHideBtn = () => {
     showPass(!hidePass)
@@ -44,7 +49,7 @@ export default function UserLogin() {
   return (
     <section className="formParent">
       <div className="formHeading">
-        <h2>Register Your Account</h2>
+        <h2>User Login</h2>
       </div>
 
       <form onSubmit={formHandler}>
@@ -54,7 +59,7 @@ export default function UserLogin() {
             <label htmlFor="email">Email :</label>
           </div>
           <div>
-            <input type="email" name="email" required value={inputVal.email} onChange={inputData} />
+            <input type="email" name="email" required value={inputVal.email} onChange={inputData} ref={autoFocus} />
           </div>
         </div>
 
@@ -72,7 +77,7 @@ export default function UserLogin() {
         </div>
 
         <div>
-          <input type="submit" value="Register" />
+          <input type="submit" value="Login" />
         </div>
       </form>
 

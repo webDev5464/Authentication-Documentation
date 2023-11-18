@@ -5,6 +5,7 @@ import UserRegistration from "./components/pages/UserRegistration"
 import UserLogin from "./components/pages/UserLogin"
 import { createContext, useState } from "react"
 import AdminLogin from "./components/admin/AdminLogin"
+import AdminLoginSuccess from "./components/admin/AdminLoginSuccess"
 
 export const PopupContext = createContext()
 
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="UserRegistration" element={<UserRegistration />} />
             <Route path="UserLogin" element={<UserLogin />} />
             <Route path="Admin" element={<AdminLogin />} />
+            <Route path="Admin/AdminLoginSuccess" element={<AdminLoginSuccess />} />
           </Routes>
         </main>
       </PopupContext.Provider>
